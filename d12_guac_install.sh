@@ -20,7 +20,6 @@ echo "deb http://deb.debian.org/debian/ bullseye main" > /etc/apt/sources.list.d
 apt-get update
 apt-get install tomcat9 tomcat9-admin tomcat9-common tomcat9-user -y
 sed -i 's/^/#/' /etc/apt/sources.list.d/bullseye.list 
-systemctl status tomcat9.service
 mkdir /etc/guacamole
 wget https://downloads.apache.org/guacamole/$VER/binary/guacamole-$VER.war -O /etc/guacamole/guacamole.war
 ln -s /etc/guacamole/guacamole.war /var/lib/tomcat9/webapps/

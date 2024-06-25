@@ -47,10 +47,10 @@ EOL
 wget https://jdbc.postgresql.org/download/postgresql-42.7.3.jar -O /etc/guacamole/lib/postgresql-42.7.3.jar
 wget https://dlcdn.apache.org/guacamole/$VER/binary/guacamole-auth-jdbc-$VER.tar.gz -O guacamole-auth-jdbc-$VER.tar.gz
 tar -xvzf guacamole-auth-jdbc-$VER.tar.gz
-cd ~/guacamole-auth-jdbc-$VER/postgresql
+cd ./guacamole-auth-jdbc-$VER/postgresql
 mv guacamole-auth-jdbc-postgresql-$VER.jar /etc/guacamole/extensions/
 mkdir /tmp/schema
-mv ~/guacamole-auth-jdbc-$VER/postgresql/schema/*.sql /tmp/schema
+mv ./guacamole-auth-jdbc-$VER/postgresql/schema/*.sql /tmp/schema
 chmod 0777 -R /tmp/schema
 cat >  /etc/guacamole/guacamole.properties << EOL
     postgresql-hostname: localhost

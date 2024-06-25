@@ -10,12 +10,13 @@ This script automates the installation of Guacamole on Debian 12 using PostgreSQ
 ## Usage
 
 1. **Download the script**: You can download the script using wget or curl, or you can clone the repository where the script is located.
+  - [Download Script](https://raw.githubusercontent.com/mrdatawolf/Debian12_Guacamole_Install_Script/main/d12_guac_install.sh)
+  - Or wget https://raw.githubusercontent.com/mrdatawolf/Debian12_Guacamole_Install_Script/main/d12_guac_install.sh
+3. **Set the password**: Open the script in a text editor and set the `PASSWORD` variable to the password you want to use for the `guacamole_user` database user.
 
-2. **Set the password**: Open the script in a text editor and set the `PASSWORD` variable to the password you want to use for the `guacamole_user` database user.
+4. **Make the script executable**: Run `chmod +x d12_guacamole_install_p1.sh` to make the script executable.
 
-3. **Make the script executable**: Run `chmod +x d12_guacamole_install_p1.sh` to make the script executable.
-
-4. **Run the script**: Run the script with sudo: `sudo ./d12_guacamole_install_p1.sh`.
+5. **Run the script**: Run the script with sudo: `sudo ./d12_guacamole_install_p1.sh`.
 
 The script will automatically install all necessary packages, download and install Guacamole, configure Guacamole to use PostgreSQL, and set up a `guacamole_user` database user.
 

@@ -1,6 +1,8 @@
 #!/bin/bash
 #SET THE VERSION TO THE ONE YOU WANT. 1.5.5 IS CURRENT AS OF JUN 2024
 VER=1.5.5
+#guacamole user password for DB
+PASSWORD=Apassword5
 sed -i '/^deb cdrom:/s/^/#/' /etc/apt/sources.list
 apt-get update
 apt-get install -y build-essential libcairo2-dev libjpeg62-turbo-dev libpng-dev	libtool-bin uuid-dev libossp-uuid-dev libavcodec-dev libavformat-dev libavutil-dev libswscale-dev freerdp2-dev libpango1.0-dev libssh2-1-dev libvncserver-dev libtelnet-dev libwebsockets-dev libssl-dev libvorbis-dev libwebp-dev libpulse-dev sudo vim postgresql postgresql-contrib
@@ -43,7 +45,7 @@ cat > /etc/guacamole/user-mapping.xml << EOL
 </user-mapping>
 EOL
 wget https://jdbc.postgresql.org/download/postgresql-42.7.3.jar -O /etc/guacamole/lib/postgresql-42.7.3.jar
-wget https://apache.org/dyn/closer.lua/guacamole/$VER/binary/guacamole-auth-jdbc-$VER.tar.gz?action=download -O guacamole-auth-jdbc-$VER.tar.gz
+wget https://dlcdn.apache.org/guacamole/$VER/binary/guacamole-auth-jdbc-$VER.tar.gz -O guacamole-auth-jdbc-$VER.tar.gz
 tar -xvzf guacamole-auth-jdbc-$VER.tar.gz
 cd ~/guacamole-auth-jdbc-$VER/postgresql
 mv guacamole-auth-jdbc-postgresql-$VER.jar /etc/guacamole/extensions/
@@ -54,21 +56,15 @@ cat >  /etc/guacamole/guacamole.properties << EOL
     postgresql-hostname: localhost
     postgresql-database: guacamole_db
     postgresql-username: guacamole_user
-    postgresql-password: some_password
+    postgresql-password: $PASSWORD
     auth-provider: org.apache.guacamole.auth.postgresql.PostgreSQLAuthenticationProvider
 EOL
-sudo -u postgres createdb guacamole_db 
 cd /tmp
+sudo -u postgres createdb guacamole_db 
 sudo -u postgres bash -c "cat schema/*.sql | psql -d guacamole_db -f -"
-sudo -u postgres psql -d guacamole_db -c "CREATE USER guacamole_user WITH PASSWORD 'Apassword5';"
+sudo -u postgres psql -d guacamole_db -c "CREATE USER guacamole_user WITH PASSWORD '$PASSWORD';"
 sudo -u postgres psql -d guacamole_db -c "GRANT SELECT,INSERT,UPDATE,DELETE ON ALL TABLES IN SCHEMA public TO guacamole_user;"
 sudo -u postgres psql -d guacamole_db -c "GRANT SELECT,USAGE ON ALL SEQUENCES IN SCHEMA public TO guacamole_user;"
-createdb guacamole_db 
-cd /tmp
-cat schema/*.sql | psql -d guacamole_db -f -
-psql -d guacamole_db -c "CREATE USER guacamole_user WITH PASSWORD 'Apassword5';"
-psql -d guacamole_db -c "GRANT SELECT,INSERT,UPDATE,DELETE ON ALL TABLES IN SCHEMA public TO guacamole_user;"
-psql -d guacamole_db -c "GRANT SELECT,USAGE ON ALL SEQUENCES IN SCHEMA public TO guacamole_user;"
 rm -rf /var/lib/tomcat9/webapps/ROOT
 mv /var/lib/tomcat9/webapps/guacamole /var/lib/tomcat9/webapps/ROOT
 systemctl restart tomcat9 guacd

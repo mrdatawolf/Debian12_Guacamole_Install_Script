@@ -2,6 +2,8 @@
 
 This script automates the installation of Guacamole on Debian 12 using PostgreSQL.
 
+## Warning this does not work yet! (Thanks Sam)
+
 ## Prerequisites
 
 - Debian 12 system.

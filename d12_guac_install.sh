@@ -2,6 +2,11 @@
 
 set -e
 
+# Log file
+LOGFILE="/var/log/guacamole_install.log"
+exec > >(tee -i $LOGFILE)
+exec 2>&1
+
 # Variable setup
 DEFAULT_VER=1.5.5
 read -p "Enter the password for the PostgreSQL user: " PASSWD
@@ -10,6 +15,7 @@ VER=${VER:-$DEFAULT_VER}
 
 # Functions
 update_and_install_dependencies() {
+    echo "Updating and installing dependencies..."
     sudo sed -i '/cdrom/d' /etc/apt/sources.list
     sudo apt-get update
     sudo apt-get install -y build-essential libcairo2-dev libjpeg62-turbo-dev libpng-dev libtool-bin uuid-dev libossp-uuid-dev \
@@ -19,6 +25,7 @@ update_and_install_dependencies() {
 }
 
 download_and_install_guacamole_server() {
+    echo "Downloading and installing Guacamole server..."
     wget https://downloads.apache.org/guacamole/$VER/source/guacamole-server-$VER.tar.gz
     tar xzf guacamole-server-$VER.tar.gz
     cd guacamole-server-$VER
@@ -32,6 +39,7 @@ download_and_install_guacamole_server() {
 }
 
 install_tomcat() {
+    echo "Installing Tomcat..."
     echo "deb http://deb.debian.org/debian/ bullseye main" | sudo tee /etc/apt/sources.list.d/bullseye.list
     sudo apt-get update
     sudo apt-get install -y tomcat9 tomcat9-admin tomcat9-common tomcat9-user
@@ -40,6 +48,7 @@ install_tomcat() {
 }
 
 setup_guacamole() {
+    echo "Setting up Guacamole..."
     sudo mkdir /etc/guacamole
     wget https://downloads.apache.org/guacamole/$VER/binary/guacamole-$VER.war -O /etc/guacamole/guacamole.war
     sudo ln -s /etc/guacamole/guacamole.war /var/lib/tomcat9/webapps/
@@ -50,6 +59,7 @@ setup_guacamole() {
 }
 
 create_guacamole_properties() {
+    echo "Creating guacamole.properties..."
     sudo tee /etc/guacamole/guacamole.properties > /dev/null << EOL
 guacd-hostname: 127.0.0.1
 guacd-port: 4822
@@ -67,6 +77,7 @@ EOL
 }
 
 setup_database() {
+    echo "Setting up the database..."
     wget https://jdbc.postgresql.org/download/postgresql-42.7.3.jar
     wget https://apache.org/dyn/closer.lua/guacamole/$VER/binary/guacamole-auth-jdbc-$VER.tar.gz?action=download
     sudo mv postgresql-42.7.3.jar /etc/guacamole/lib/
@@ -80,6 +91,7 @@ setup_database() {
 }
 
 setup_postgresql() {
+    echo "Setting up PostgreSQL..."
     sudo -i -u postgres << EOF
 createdb guacamole_db
 cd /tmp/schema
@@ -93,6 +105,7 @@ EOF
 }
 
 restart_services() {
+    echo "Restarting services..."
     sudo systemctl restart tomcat9 guacd
 }
 
@@ -105,3 +118,5 @@ create_guacamole_properties
 setup_database
 setup_postgresql
 restart_services
+
+echo "Installation completed. Check the log file at $LOGFILE for details."

@@ -1,8 +1,10 @@
+## First thanks MysticRyuujin for the version that works on Debian 11!!!
+https://github.com/MysticRyuujin/guac-install
+wget -O guac-install.sh https://git.io/fxZq5; chmod +x guac-install.sh
+sudo ./guac-install.sh	
+
 # Guacamole Installation Script for Debian 12
-
 This script automates the installation of Guacamole on Debian 12 using PostgreSQL.
-
-## Warning this does not work yet! (Thanks Sam)
 
 ## Prerequisites
 

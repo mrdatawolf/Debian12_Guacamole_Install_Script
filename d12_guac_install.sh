@@ -109,6 +109,11 @@ restart_services() {
     sudo systemctl restart tomcat9 guacd
 }
 
+make_guac_primary() {
+    echo "making Guacamole the primary web page for the Tomcat server"
+    rm -rf /var/lib/tomcat9/webapps/ROOT; mv /var/lib/tomcat9/webapps/guacamole /var/lib/tomcat9/webapps/ROOT; systemctl restart tomcat9 guacd
+}
+
 # Main script
 update_and_install_dependencies
 download_and_install_guacamole_server
@@ -118,5 +123,6 @@ create_guacamole_properties
 setup_database
 setup_postgresql
 restart_services
+make_guac_primary
 
 echo "Installation completed. Check the log file at $LOGFILE for details."

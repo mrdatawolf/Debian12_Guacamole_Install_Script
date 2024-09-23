@@ -9,8 +9,27 @@ This script automates the installation of Guacamole on Debian 12 using PostgreSQ
 - Debian 12 system.
 - Internet connection.
 
-## Usage
+## Least Effort Usage
+1. **Download the script**: You can download the script using wget or curl, or you can clone the repository where the script is located.
+  - [Download Script](https://raw.githubusercontent.com/mrdatawolf/Debian12_Guacamole_Install_Script/main/runme.sh)
+  - Or wget https://raw.githubusercontent.com/mrdatawolf/Debian12_Guacamole_Install_Script/main/runme.sh
+2. Run the script on your box with elevated priviliges.
+3. Check if it all worked by going to http://<ip>:8080
 
+## Just Guacamole setup
+1. **Download the script**: You can download the script using wget or curl, or you can clone the repository where the script is located.
+  - [Download Script](https://raw.githubusercontent.com/mrdatawolf/Debian12_Guacamole_Install_Script/main/d12_guac_install.sh)
+  - Or wget https://raw.githubusercontent.com/mrdatawolf/Debian12_Guacamole_Install_Script/main/d12_guac_install.sh
+2. Run the script on your box.
+3. Check if it all worked by going to http://<ip>:8080
+
+
+
+## iso setup
+There are some tests on making this run as part of the install process but it is not working yet.
+
+
+## Old
 1. **Download the script**: You can download the script using wget or curl, or you can clone the repository where the script is located.
   - [Download Script](https://raw.githubusercontent.com/mrdatawolf/Debian12_Guacamole_Install_Script/main/d12_guac_install.sh)
   - Or wget https://raw.githubusercontent.com/mrdatawolf/Debian12_Guacamole_Install_Script/main/d12_guac_install.sh

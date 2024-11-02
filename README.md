@@ -1,60 +1,70 @@
-## First thanks MysticRyuujin for the version that works on Debian 11!!!
-https://github.com/MysticRyuujin/guac-install
-wget -O guac-install.sh https://git.io/fxZq5; chmod +x guac-install.sh
-sudo ./guac-install.sh	
+# Guacamole Installation Script for Debian 12 
 
-# Guacamole Installation Script for Debian 12
-This script automates the installation of Guacamole on Debian 12 using PostgreSQL.
+This script automates the installation of Guacamole on Debian 12 using PostgreSQL. 
 
-## Prerequisites
+## Prerequisites 
+- Debian 12 system
+- Internet connection 
 
-- Debian 12 system.
-- Internet connection.
+## Least Effort Usage 
+1. **Download the script**:
+   - [Download Script](https://raw.githubusercontent.com/mrdatawolf/Debian12_Guacamole_Install_Script/main/runme.sh)
+   - Or use `wget`:
+     ```sh
+     wget https://raw.githubusercontent.com/mrdatawolf/Debian12_Guacamole_Install_Script/main/runme.sh
+     ```
+2. **Run the script** with elevated privileges:
+   ```sh
+   sudo ./runme.sh
+   ```
+3. Check if it worked by navigating to `http://<ip>:8080`.
+   
+## Just Guacamole Setup
+1. Download the script:
+- [Download Script](https://raw.githubusercontent.com/mrdatawolf/Debian12_Guacamole_Install_Script/main/d12_guac_install.sh?form=MG0AV3)
+- Or use wget:
+ ```sh
+wget https://raw.githubusercontent.com/mrdatawolf/Debian12_Guacamole_Install_Script/main/d12_guac_install.sh
+```
+2. Run the script:
+```sh
+sudo ./d12_guac_install.sh
+```
+3. Check if it worked by navigating to `http://<ip>:8080`.
 
-## Least Effort Usage
-1. **Download the script**: You can download the script using wget or curl, or you can clone the repository where the script is located.
-  - [Download Script](https://raw.githubusercontent.com/mrdatawolf/Debian12_Guacamole_Install_Script/main/runme.sh)
-  - Or wget https://raw.githubusercontent.com/mrdatawolf/Debian12_Guacamole_Install_Script/main/runme.sh
-2. Run the script on your box with elevated priviliges.
-3. Check if it all worked by going to http://<ip>:8080
+## ISO Setup
+There are ongoing tests to integrate this script into the installation process, but it is not functional yet.
 
-## Just Guacamole setup
-1. **Download the script**: You can download the script using wget or curl, or you can clone the repository where the script is located.
-  - [Download Script](https://raw.githubusercontent.com/mrdatawolf/Debian12_Guacamole_Install_Script/main/d12_guac_install.sh)
-  - Or wget https://raw.githubusercontent.com/mrdatawolf/Debian12_Guacamole_Install_Script/main/d12_guac_install.sh
-2. Run the script on your box.
-3. Check if it all worked by going to http://<ip>:8080
+## Old Setup
+1. Download the script:
+- [Download Script] (https://raw.githubusercontent.com/mrdatawolf/Debian12_Guacamole_Install_Script/main/d12_guac_install.sh?form=MG0AV3)
+-Or use wget:
+```sh
+wget https://raw.githubusercontent.com/mrdatawolf/Debian12_Guacamole_Install_Script/main/d12_guac_install.sh
+```
+2. **Set the password**: Open the script in a text editor and set the PASSWORD variable to the desired password for the guacamole_user database user.
+3. Make the script executable:
+```sh
+chmod +x d12_guacamole_install_p1.sh
+```
+4. Run the script with sudo:
+```sh
+sudo ./d12_guacamole_install_p1.sh
+```
 
-
-
-## iso setup
-There are some tests on making this run as part of the install process but it is not working yet.
-
-
-## Old
-1. **Download the script**: You can download the script using wget or curl, or you can clone the repository where the script is located.
-  - [Download Script](https://raw.githubusercontent.com/mrdatawolf/Debian12_Guacamole_Install_Script/main/d12_guac_install.sh)
-  - Or wget https://raw.githubusercontent.com/mrdatawolf/Debian12_Guacamole_Install_Script/main/d12_guac_install.sh
-3. **Set the password**: Open the script in a text editor and set the `PASSWORD` variable to the password you want to use for the `guacamole_user` database user.
-
-4. **Make the script executable**: Run `chmod +x d12_guacamole_install_p1.sh` to make the script executable.
-
-5. **Run the script**: Run the script with sudo: `sudo ./d12_guacamole_install_p1.sh`.
-
-The script will automatically install all necessary packages, download and install Guacamole, configure Guacamole to use PostgreSQL, and set up a `guacamole_user` database user.
+The script will automatically install all necessary packages, download and install Guacamole, configure it to use PostgreSQL, and set up a `guacamole_user` database user.
 
 ## Post-Installation
-
 After the script has finished running, you should be able to access the Guacamole web interface by navigating to `http://your-server-address:8080/` in your web browser. The default username is `guacadmin` and the password is `guacadmin`.
 
 ## Troubleshooting
-
 If you encounter any issues while running the script, check the following:
 
-- Ensure you're running the script with sudo.
-- Ensure your Debian system is up-to-date.
-- Check the output of the script for any error messages.
+Ensure you're running the script with sudo.
+
+Ensure your Debian system is up-to-date.
+
+Check the output of the script for any error messages.
 
 ## License
-
-This script is released under the MIT license. See `LICENSE` for more details.
+This script is released under the MIT license. See [LICENSE] (https://license/?form=MG0AV3) for more details.

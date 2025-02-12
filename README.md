@@ -21,6 +21,7 @@ wget -O guac-install.sh https://git.io/fxZq5; chmod +x guac-install.sh; sudo ./g
      ```
 2. **Run the script** with elevated privileges:
    ```sh
+   chmod +x ./runme.sh
    sudo ./runme.sh
    ```
 3. Check if it worked by navigating to `http://<ip>:8080`.

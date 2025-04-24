@@ -48,7 +48,20 @@ chmod +x d12_guac_install.sh
 ./initial_debian_setup.sh | tee initial_debian_setup.log
 ./d12_guac_install.sh | tee d12_guac_install.log
 
-# Optional: Cleanup downloaded scripts
 rm -f initial_debian_setup.sh d12_guac_install.sh
 
+if [[ "$*" == *"--allowLogin"* ]]; then
+  # Download the file from GitHub
+  if ! wget -O allow_login_script.sh https://raw.githubusercontent.com/yourusername/yourrepo/main/allow_login_script.sh; then
+    echo "Failed to download allow_login_script.sh. Please check the URL and try again." >&2
+    exit 1
+  fi
+  chmod +x allow_login_script.sh
+  ./allow_login_script.sh | tee allow_login_script.log
+  rm -f allow_login_script.sh
+
+  echo "Allow login script executed successfully. Log is available in allow_login_script.log."
+fi
+
 echo "Scripts executed successfully. Logs are available in initial_debian_setup.log and d12_guac_install.log."
+

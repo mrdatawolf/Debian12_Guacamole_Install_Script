@@ -74,7 +74,7 @@ Ensure your Debian system is up-to-date.
 Check the output of the script for any error messages.
 
 ## License
-This script is released under the MIT license. See [LICENSE] (https://license/?form=MG0AV3) for more details.
+This script is released under the MIT license. See [LICENSE](https://license/?form=MG0AV3) for more details.
 
 <!-- INSTALL_COMMAND:  wget https://raw.githubusercontent.com/mrdatawolf/Debian12_Guacamole_Install_Script/main/runme.sh -->
 <!-- RUN_COMMAND: sudo ./runme.sh -->

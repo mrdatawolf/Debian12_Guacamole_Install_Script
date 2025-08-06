@@ -44,7 +44,7 @@ There are ongoing tests to integrate this script into the installation process, 
 
 ## Old Setup
 1. Download the script:
-- [Download Script] (https://raw.githubusercontent.com/mrdatawolf/Debian12_Guacamole_Install_Script/main/d12_guac_install.sh?form=MG0AV3)
+- [Download Script](https://raw.githubusercontent.com/mrdatawolf/Debian12_Guacamole_Install_Script/main/d12_guac_install.sh?form=MG0AV3)
 -Or use wget:
 ```sh
 wget https://raw.githubusercontent.com/mrdatawolf/Debian12_Guacamole_Install_Script/main/d12_guac_install.sh
